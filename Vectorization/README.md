@@ -61,9 +61,5 @@ IDF measures the rarity of a term across a collection of documents. It is calcul
 
 The solution for this task has been implemented in the Python file:
 
-**`vectorization.py`**
+**`main.py`**
 
-Run the file :
-```
-python vectorization.py
-```
