@@ -1,3 +1,4 @@
+import math
 # Converting text into Bow
 # Sample documents
 docs = ['I love NLP', 'NLP is amazing', 'I love coding']
@@ -18,10 +19,10 @@ for doc in docs:
     tokens = doc.split()
     vector = []
     for word in words:
-        vector.append(tokens.count(word))  # count occurrences
+        vector.append(tokens.count(word))  
     bow_vectors.append(vector)
 
-# Step 3: Print vectors
+# Printing vectors
 for i, vec in enumerate(bow_vectors):
     print(f"Document {i+1} BoW:", vec)
     
@@ -38,9 +39,8 @@ print(docs_tokens)
 vocab = sorted(set(word for doc in docs_tokens for word in doc))
 print(vocab)
 
-
+# calculating tf 
 tf_docs = []
-
 for doc in docs_tokens:              
     tf_doc = {}                      
     doc_len = len(doc)        
@@ -49,8 +49,8 @@ for doc in docs_tokens:
         tf_doc[word] = doc.count(word) / doc_len 
     tf_docs.append(tf_doc) 
 print(tf_docs)
-import math
 
+# calculating idf
 N = len(docs_tokens)  
 idf = {}
 
@@ -63,8 +63,9 @@ for word in vocab:
         
 
 print(idf)
-tfidf_docs = []
 
+# calculating TF-IDF by multiplying tf*idf
+tfidf_docs = []
 for tf_doc in tf_docs:
     tfidf_doc = {}
     for word in vocab:
