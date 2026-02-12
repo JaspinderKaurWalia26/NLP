@@ -1,5 +1,14 @@
 import math
-# Dataset
+"""
+Task: Build Spam Classifier
+Preprocess text
+Convert to TF-IDF
+Train Naive Bayes
+Predict spam/not spam
+"""
+# Spam Classification using Naive bayes
+
+# Sample Dataset
 documents = [
     ("Win money now", "spam"),
     ("Limited offer win cash", "spam"),
@@ -7,6 +16,7 @@ documents = [
     ("Project meeting schedule", "not_spam")
 ]
 
+# separating text and labels (input,output)
 docs_tokens = []
 labels = []
 
@@ -67,10 +77,11 @@ for i in range(len(labels)):
         not_spam_tfidf.append(tfidf_docs[i])
 
 
-# Prior Probabilities
-
+# Calculating Prior Probabilities
+# P_spam= count of spam labels / total length of data
 P_spam = len(spam_tfidf) / len(tfidf_docs)
 P_not_spam = len(not_spam_tfidf) / len(tfidf_docs)
+
 
 
 # Average TF-IDF per Class
@@ -81,7 +92,7 @@ def avg_tfidf(docs):
         total = 0
         for doc in docs:
             total += doc[word]
-        avg[word] = (total + 1e-6) / len(docs)  # smoothing
+        avg[word] = (total + 1e-6) / len(docs)  
     return avg
 
 spam_avg = avg_tfidf(spam_tfidf)
